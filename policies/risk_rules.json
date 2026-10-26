@@ -1,0 +1,106 @@
+{
+  "version": "2025-01",
+  "severity_weights": {"high": 30, "medium": 15, "low": 5},
+  "rules": [
+    {
+      "id": "LIAB-001",
+      "category": "Limitation of liability",
+      "severity": "high",
+      "applies_to": "liabilit",
+      "match": ["liable for all", "unlimited liability", "consequential damages arising from"],
+      "unless": ["shall not exceed", "aggregate liability", "total liability", "neither party shall be liable"],
+      "explanation": "Liability is not capped, or the counterparty is excluded from damages while we are not.",
+      "recommendation": "Require a mutual cap (e.g. 12 months of fees) and a mutual exclusion of consequential damages."
+    },
+    {
+      "id": "INDEM-001",
+      "category": "Indemnification",
+      "severity": "high",
+      "applies_to": "indemn",
+      "match": ["any and all claims", "without limitation", "arising out of or relating to"],
+      "unless": ["third-party claims alleging", "infringe"],
+      "explanation": "Indemnity is one-sided and uncapped rather than limited to specific third-party claims.",
+      "recommendation": "Make indemnities mutual and scope them to third-party claims (IP infringement, data breach, gross negligence)."
+    },
+    {
+      "id": "TERM-001",
+      "category": "Termination",
+      "severity": "high",
+      "applies_to": "terminat",
+      "match": ["may terminate this agreement at any time", "for any reason"],
+      "unless": ["either party may terminate"],
+      "explanation": "The counterparty can terminate for convenience on short notice while our termination rights are restricted.",
+      "recommendation": "Make termination-for-convenience mutual with at least 60-90 days notice and transition assistance."
+    },
+    {
+      "id": "RENEW-001",
+      "category": "Auto-renewal",
+      "severity": "medium",
+      "applies_to": "",
+      "match": ["automatically renew", "auto-renew"],
+      "unless": [],
+      "explanation": "The agreement renews automatically; missing the notice window locks in another term.",
+      "recommendation": "Add a renewal reminder to the contract calendar or require an affirmative renewal order."
+    },
+    {
+      "id": "FEES-001",
+      "category": "Pricing",
+      "severity": "medium",
+      "applies_to": "",
+      "match": ["increase fees at any time", "may increase (the )?fees"],
+      "unless": ["not more than", "cpi", "capped"],
+      "explanation": "Fees can change unilaterally without a cap.",
+      "recommendation": "Fix fees for the initial term and cap annual increases (e.g. CPI or 3-5%)."
+    },
+    {
+      "id": "PAY-001",
+      "category": "Payment terms",
+      "severity": "low",
+      "applies_to": "",
+      "match": ["within (fifteen|ten|seven|five) \\(\\d+\\) days", "(2|3|4|5)% per month"],
+      "unless": [],
+      "explanation": "Payment window is shorter than the standard net-30/45, or late interest is above market.",
+      "recommendation": "Negotiate net-45 payment terms and late interest no higher than 1% per month."
+    },
+    {
+      "id": "DATA-001",
+      "category": "Data protection",
+      "severity": "high",
+      "applies_to": "",
+      "match": ["use customer data to improve", "share .*data with its affiliates", "sell .*data"],
+      "unless": ["only on documented instructions"],
+      "explanation": "The counterparty may use or share our data beyond what is needed to deliver the service.",
+      "recommendation": "Limit processing to documented instructions, add breach notification (72h) and deletion on termination."
+    },
+    {
+      "id": "SUB-001",
+      "category": "Subcontracting",
+      "severity": "medium",
+      "applies_to": "",
+      "match": ["subcontract .* without (prior )?(notice|consent)"],
+      "unless": [],
+      "explanation": "Work can be subcontracted without notice, so we cannot vet who handles our data or deliverables.",
+      "recommendation": "Require prior written consent for subcontractors and flow down confidentiality and security terms."
+    },
+    {
+      "id": "LAW-001",
+      "category": "Governing law and disputes",
+      "severity": "low",
+      "applies_to": "governing law",
+      "match": ["exclusively by binding arbitration", "state of new york"],
+      "unless": [],
+      "explanation": "Forum or governing law differs from the approved list (Oregon, Delaware) or mandates exclusive arbitration.",
+      "recommendation": "Prefer Oregon or Delaware law; allow injunctive relief in court."
+    },
+    {
+      "id": "EFFORT-001",
+      "category": "Performance standard",
+      "severity": "medium",
+      "applies_to": "",
+      "match": ["best-efforts basis", "best efforts basis", "commercially reasonable efforts only"],
+      "unless": ["service level", "available 99"],
+      "explanation": "Obligations are framed as effort rather than measurable commitments.",
+      "recommendation": "Add measurable service levels with service credits or termination rights for chronic failure."
+    }
+  ]
+}
